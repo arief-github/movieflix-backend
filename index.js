@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 const Movies = require('./data/movies.js');
+const Reviews = require('./data/reviews.js');
 
 async function main() {
     dotenv.config()
@@ -16,6 +17,7 @@ async function main() {
         // connect to the MongoDB Cluster
         await client.connect();
         await Movies.injectDB(client);
+        await Reviews.injectDB(client);
         app.listen(port, () => {
             console.log('server is running on port:' + port);
         })
